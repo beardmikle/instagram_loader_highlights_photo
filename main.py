@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import instaloader
+import self as self
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+L = instaloader.Instaloader()
 
+USER = input('Введите имя своего аккаунта:')
+PASSWORD = input('Введите пароль своего аккаунта:')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+L.login(USER, PASSWORD)
 
+account = input('Введите имя аккаунта для скачивания:')
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+L.download_profile(account, profile_pic=True, profile_pic_only=True, fast_update=True, download_stories=True, download_stories_only=True, download_tagged=True, download_tagged_only=True, post_filter=None, storyitem_filter=None)
+# L.download_highlights(self,
+                            user: Union[int, Profile],
+                            fast_update: bool = False,
+                            filename_target: Optional[str] = None,
+                            storyitem_filter: Optional[Callable[[StoryItem], bool]] = None)
