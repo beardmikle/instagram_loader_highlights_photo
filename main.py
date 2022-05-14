@@ -13,3 +13,5 @@ for highlight in instance.get_highlights(user=profile):
 
 instance.download_profile(profile_name=profile)
 
+input('Press ENTER to exit')
+
