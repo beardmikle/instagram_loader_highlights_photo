@@ -1,12 +1,15 @@
 import instaloader
+from instaloader import Profile, Post
 
-L = instaloader.Instaloader()
+instance = instaloader.Instaloader()
 
-USER = input('Введите имя своего аккаунта:')
-PASSWORD = input('Введите пароль своего аккаунта:')
+instance.login(user=input("Введите ваш логин:"),passwd=input("Введите ваш пароль:"))
 
-L.login(USER, PASSWORD)
+profile = Profile.from_username(instance.context, username=input("Введите аккаунт для скачивания историй:"))
 
-account = input('Введите имя аккаунта для скачивания:')
+for highlight in instance.get_highlights(user=profile):
+    for item in highlight.get_items():
+        instance.download_storyitem(item, '{}/{}'.format(highlight.owner_username, highlight.title))
 
-L.download_profile(account, profile_pic=False, profile_pic_only=False, fast_update=True, download_stories=True, download_stories_only=False, download_tagged=False, download_tagged_only=False, post_filter=None, storyitem_filter=None)
+instance.download_profile(profile_name=input("Введите аккаунт для скачивания остального:"))
+
